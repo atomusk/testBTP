@@ -38,6 +38,10 @@
             "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_SALES_ORDER_SRV"
           }
         }
+      },
+      "API_PRODUCT_SRV": {
+        "kind": "odata",
+        "model": "srv/external/API_PRODUCT_SRV"
       }
     },
     "hana": {

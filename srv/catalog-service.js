@@ -4,7 +4,6 @@ log.setLoggingLevel('info');
 log.registerCustomFields(["country", "amount"]);
 
 module.exports = cds.service.impl(async function () {
-
     const s4hcso = await cds.connect.to('API_SALES_ORDER_SRV');
 
     const { 
