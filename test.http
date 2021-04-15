@@ -7,7 +7,7 @@ GET http://localhost:4004/catalog/Sales
 POST http://localhost:4004/catalog/Sales(1)/CatalogService.boost
 Content-Type: application/json
 
-{}
+{} 
 ###
 GET http://localhost:4004/catalog/topSales(amount=700)
 ###
