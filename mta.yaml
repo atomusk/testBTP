@@ -33,7 +33,7 @@ modules:
     path: gen/srv
     parameters:
       buildpack: nodejs_buildpack
-      memory: 512M
+      memory: 256M
       disk-quota: 1024M
     properties:
       ApplicationInterfaceKey: saptest0
