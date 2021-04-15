@@ -71,6 +71,17 @@ modules:
         - npm run build
       supported-platforms: []
 
+  # ----------- HTML5 APP REPOSITORY APP FIORI MODULE ----------
+  - name: app_abn-fiori2
+  # ------------------------------------------------------------
+    type: html5
+    path: app/resources/fiori2
+    build-parameters:
+      builder: custom
+      commands:
+        - npm run build
+      supported-platforms: []
+
   # ----------- HTML5 APP REPOSITORY DEPLOYER MODULE -----------
   - name: app_abn-ui-deployer
   # ------------------------------------------------------------
@@ -90,6 +101,10 @@ modules:
         - artifacts:
             - fiori-content.zip
           name: app_abn-fiori
+          target-path: gen/app/
+        - artifacts:
+            - fiori-content2.zip
+          name: app_abn-fiori2
           target-path: gen/app/
 
   # ----- HTML5 APP REPOSITORY DESTINATION CONTENT MODULE ------

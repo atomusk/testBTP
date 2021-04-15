@@ -45,7 +45,7 @@
                     },
                     "semanticObject": "Sales",
                     "action": "display",
-                    "title": "TestAPP-Fiori",
+                    "title": "First Fiori app !",
                     "subTitle": "Business Application Fiori",
                     "icon": "sap-icon://sales-document",
                     "indicatorDataSource": {
