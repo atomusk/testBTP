@@ -17,10 +17,9 @@
 			"mainService": {
 				"uri": "catalog/",
 				"type": "OData",
-				"settings": {
-					"odataVersion": "2.0",
-					"localUri": "localService/metadata.xml"
-				}
+                "settings": {
+                    "odataVersion": "4.0"
+                }
 			}
 		}
 	},
