@@ -1,0 +1,17 @@
+GET http://localhost:4004/catalog
+###
+GET http://localhost:4004/catalog/$metadata
+###
+GET http://localhost:4004/catalog/Sales
+###
+POST http://localhost:4004/catalog/Sales(1)/CatalogService.boost
+Content-Type: application/json
+
+{}
+###
+GET http://localhost:4004/catalog/topSales(amount=700)
+###
+GET http://localhost:4004/catalog/SalesOrders?$top=10&$filter=TotalNetAmount%20gt%202000&$orderby=SalesOrder%20desc
+###
+GET http://localhost:4004/catalog/Sales(9)/CatalogService.largestOrder()
+###

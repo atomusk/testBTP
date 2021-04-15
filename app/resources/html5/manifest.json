@@ -1,0 +1,17 @@
+{
+    "_version": "",
+    "sap.cloud": {
+        "public": true,
+        "service": "app_abn-service"
+    },
+    "sap.app": {
+        "id": "app_abn-html5",
+        "type": "application",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "TestAPP HTML5",
+        "description": "Business Application HTML5",
+        "offline": false
+    }
+}

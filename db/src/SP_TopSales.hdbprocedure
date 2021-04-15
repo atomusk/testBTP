@@ -1,0 +1,12 @@
+PROCEDURE "app_abn.db::SP_TopSales" (IN amount INTEGER, OUT result "app_abn.db::TT_TopSales")
+  LANGUAGE SQLSCRIPT
+  SQL SECURITY INVOKER
+  READS SQL DATA
+  AS
+BEGIN
+  result = select ID, REGION as "region", COUNTRY as "country", AMOUNT as "amount", COMMENTS as "comments" 
+             from "APP_ABN_DB_SALES"
+             where AMOUNT >= :amount
+             order by AMOUNT desc
+             ;
+END

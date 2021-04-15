@@ -1,0 +1,16 @@
+{
+    "welcomeFile": "index.html",
+    "authenticationMethod": "none",
+    "routes": [
+        {
+            "source": "^/catalog/(.*)$",
+            "csrfProtection": false,
+            "destination": "app_abn-srv"
+        }
+        ,
+        {
+            "source": "^/(.*)$",
+            "service": "html5-apps-repo-rt"
+        }
+    ]
+}
