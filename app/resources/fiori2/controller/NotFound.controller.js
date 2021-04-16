@@ -3,14 +3,16 @@ sap.ui.define([
 ], function (BaseController) {
 	"use strict";
 
-	return BaseController.extend("ns.app_abn.controller.NotFound", {
+	return BaseController.extend("ns.fiori3.controller.NotFound", {
 
-		onInit: function () {
-			this.getRouter().getTarget("notFound").attachDisplay(this._onNotFoundDisplayed, this);
-		},
-
-		_onNotFoundDisplayed : function () {
-			this.getModel("appView").setProperty("/layout", "OneColumn");
+		/**
+		 * Navigates to the worklist when the link is pressed
+		 * @public
+		 */
+		onLinkPressed : function () {
+			this.getRouter().navTo("worklist");
 		}
+
 	});
+
 });

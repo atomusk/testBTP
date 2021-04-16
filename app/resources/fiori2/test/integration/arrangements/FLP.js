@@ -7,9 +7,9 @@ sap.ui.define([
 	"use strict";
 
 	/**
-	 *  Manually set OPA styles when running test with the FLP Sandbox.
-	 *  Function is executed after DOM is available
-	 *  */
+	*  Manually set OPA styles when running test with the FLP Sandbox.
+	*  Function is executed after DOM is available
+	*  */
 	function fnSetupFLPStyles() {
 		// include standard OPA styles
 		includeStylesheet(sap.ui.require.toUrl("sap/ui/test/OpaCss.css"));
@@ -40,11 +40,11 @@ sap.ui.define([
 	// eslint-disable-next-line no-unused-expressions
 	document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", fnSetupFLPStyles) : fnSetupFLPStyles();
 
-	return Opa5.extend("ns.app_abn.test.integration.arrangements.FLP", {
+	return Opa5.extend("ns.fiori3.test.integration.arrangements.FLP", {
 		/**
-		 * Navigating to home screen to unload the app component
-		 * @returns {sap.ui.test.Opa5.waitFor} Assertion that is always executed
-		 */
+		* Navigating to home screen to unload the app component
+		* @returns {sap.ui.test.Opa5.waitFor} Assertion that is always executed
+		*/
 		iLeaveMyFLPApp: function () {
 			return this.waitFor({
 				success: function () {

@@ -1,38 +1,36 @@
-/*global QUnit*/
-
 sap.ui.define([
-	"sap/m/Text",
-	"ns/app_abn/model/formatter"
-], function (Text, formatter) {
+"ns/fiori3/model/formatter"
+], function (formatter) {
 	"use strict";
 
-	QUnit.module("formatter - Currency value");
+	QUnit.module("Number unit");
 
-	function currencyValueTestCase(assert, sValue, fExpectedNumber) {
+	function numberUnitValueTestCase(assert, sValue, fExpectedNumber) {
 		// Act
-		var fCurrency = formatter.currencyValue(sValue);
+		var fNumber = formatter.numberUnit(sValue);
 
 		// Assert
-		assert.strictEqual(fCurrency, fExpectedNumber, "The rounding was correct");
+		assert.strictEqual(fNumber, fExpectedNumber, "The rounding was correct");
 	}
 
 	QUnit.test("Should round down a 3 digit number", function (assert) {
-		currencyValueTestCase.call(this, assert, "3.123", "3.12");
+		numberUnitValueTestCase.call(this, assert, "3.123", "3.12");
 	});
 
 	QUnit.test("Should round up a 3 digit number", function (assert) {
-		currencyValueTestCase.call(this, assert, "3.128", "3.13");
+		numberUnitValueTestCase.call(this, assert, "3.128", "3.13");
 	});
 
 	QUnit.test("Should round a negative number", function (assert) {
-		currencyValueTestCase.call(this, assert, "-3", "-3.00");
+		numberUnitValueTestCase.call(this, assert, "-3", "-3.00");
 	});
 
 	QUnit.test("Should round an empty string", function (assert) {
-		currencyValueTestCase.call(this, assert, "", "");
+		numberUnitValueTestCase.call(this, assert, "", "");
 	});
 
 	QUnit.test("Should round a zero", function (assert) {
-		currencyValueTestCase.call(this, assert, "0", "0.00");
+		numberUnitValueTestCase.call(this, assert, "0", "0.00");
 	});
+
 });

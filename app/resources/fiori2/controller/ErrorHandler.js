@@ -1,66 +1,77 @@
 sap.ui.define([
 	"sap/ui/base/Object",
-	"sap/m/MessageBox"
-], function (UI5Object, MessageBox) {
+	"sap/m/MessageBox",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
+], function (UI5Object, MessageBox, Filter, FilterOperator) {
 	"use strict";
 
-	return UI5Object.extend("ns.app_abn.controller.ErrorHandler", {
+	return UI5Object.extend("ns.fiori3.controller.ErrorHandler", {
 
 		/**
 		 * Handles application errors by automatically attaching to the model events and displaying errors when needed.
 		 * @class
 		 * @param {sap.ui.core.UIComponent} oComponent reference to the app's component
 		 * @public
-		 * @alias ns.app_abn.controller.ErrorHandler
+		 * @alias ns.fiori3.controller.ErrorHandler
 		 */
 		constructor : function (oComponent) {
-			this._oResourceBundle = oComponent.getModel("i18n").getResourceBundle();
+			var	oMessageManager = sap.ui.getCore().getMessageManager(),
+				oMessageModel = oMessageManager.getMessageModel(),
+				oResourceBundle = oComponent.getModel("i18n").getResourceBundle(),
+				sErrorText = oResourceBundle.getText("errorText"),
+				sMultipleErrors = oResourceBundle.getText("multipleErrorsText");
+
 			this._oComponent = oComponent;
-			this._oModel = oComponent.getModel();
 			this._bMessageOpen = false;
-			this._sErrorText = this._oResourceBundle.getText("errorText");
 
-			this._oModel.attachMetadataFailed(function (oEvent) {
-				var oParams = oEvent.getParameters();
-				this._showServiceError(oParams.response);
-			}, this);
+			this.oMessageModelBinding = oMessageModel.bindList("/", undefined,
+				[], new Filter("technical", FilterOperator.EQ, true));
 
-			this._oModel.attachRequestFailed(function (oEvent) {
-				var oParams = oEvent.getParameters();
-				// An entity that was not found in the service is also throwing a 404 error in oData.
-				// We already cover this case with a notFound target so we skip it here.
-				// A request that cannot be sent to the server is a technical error that we have to handle though
-				if (oParams.response.statusCode !== "404" || (oParams.response.statusCode === 404 && oParams.response.responseText.indexOf("Cannot POST") === 0)) {
-					this._showServiceError(oParams.response);
+			this.oMessageModelBinding.attachChange(function (oEvent) {
+				var aContexts = oEvent.getSource().getContexts(),
+					aMessages = [],
+					sErrorTitle;
+
+				if (this._bMessageOpen || !aContexts.length) {
+					return;
 				}
+
+				// Extract and remove the technical messages
+				aContexts.forEach(function (oContext) {
+					aMessages.push(oContext.getObject());
+				});
+				oMessageManager.removeMessages(aMessages);
+
+				// Due to batching there can be more than one technical message. However the UX
+				// guidelines say "display a single message in a message box" assuming that there
+				// will be only one at a time.
+				sErrorTitle = aMessages.length === 1 ? sErrorText : sMultipleErrors;
+				this._showServiceError(sErrorTitle, aMessages[0].message);
 			}, this);
 		},
 
 		/**
 		 * Shows a {@link sap.m.MessageBox} when a service call has failed.
-		 * Only the first error message will be display.
-		 * @param {string} sDetails a technical error to be displayed on request
+		 * Only the first error message will be displayed.
+		 * @param {string} sErrorTitle A title for the error message
+		 * @param {string} sDetails A technical error to be displayed on request
 		 * @private
 		 */
-		_showServiceError : function (sDetails) {
-			if (this._bMessageOpen) {
-				return;
-			}
+		_showServiceError : function (sErrorTitle, sDetails) {
 			this._bMessageOpen = true;
 			MessageBox.error(
-				this._sErrorText,
+				sErrorTitle,
 				{
 					id : "serviceErrorMessageBox",
-					details : sDetails,
-					styleClass : this._oComponent.getContentDensityClass(),
-					actions : [MessageBox.Action.CLOSE],
-					onClose : function () {
+					details: sDetails,
+					styleClass: this._oComponent.getContentDensityClass(),
+					actions: [MessageBox.Action.CLOSE],
+					onClose: function () {
 						this._bMessageOpen = false;
 					}.bind(this)
 				}
 			);
 		}
-
 	});
-
 });

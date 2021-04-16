@@ -6,6 +6,7 @@ sap.ui.define([
 	"use strict";
 
 	return {
+
 		createDeviceModel : function () {
 			var oModel = new JSONModel(Device);
 			oModel.setDefaultBindingMode("OneWay");
@@ -13,13 +14,15 @@ sap.ui.define([
 		},
 
 		createFLPModel : function () {
-			var fnGetuser = ObjectPath.get("sap.ushell.Container.getUser"),
-				bIsShareInJamActive = fnGetuser ? fnGetuser().isJamActive() : false,
+			var fnGetUser = ObjectPath.get("sap.ushell.Container.getUser"),
+				bIsShareInJamActive = fnGetUser ? fnGetUser().isJamActive() : false,
 				oModel = new JSONModel({
 					isShareInJamActive: bIsShareInJamActive
 				});
 			oModel.setDefaultBindingMode("OneWay");
 			return oModel;
 		}
+
 	};
+
 });
