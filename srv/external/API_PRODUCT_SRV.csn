@@ -5,7 +5,7 @@
     },
     "API_PRODUCT_SRV.A_Product": {
       "kind": "entity",
-      "@cds.persistence.skip": true,
+     "@cds.persistence.skip": true,
       "elements": {
         "Product": {
           "key": true,

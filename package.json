@@ -26,6 +26,22 @@
           "kind": "sql"
         }
       },
+      "API_PRODUCT_SRV": {
+        "kind": "odata",
+        "model": "srv/external/API_PRODUCT_SRV",
+        "credentials": {
+          "[production]": {
+            "destination": "Viseo_Ext",
+            "path": "sap/opu/odata/sap/API_PRODUCT_SRV"
+          },
+          "[development]": {
+            "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_PRODUCT_SRV"
+          },
+          "[development_old]": {
+            "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_PRODUCT_SRV"
+          }
+        }
+      },
       "API_SALES_ORDER_SRV": {
         "kind": "odata",
         "model": "srv/external/API_SALES_ORDER_SRV",
@@ -36,12 +52,11 @@
           },
           "[development]": {
             "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_SALES_ORDER_SRV"
+          },
+          "[development_old]": {
+            "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_SALES_ORDER_SRV"
           }
         }
-      },
-      "API_PRODUCT_SRV": {
-        "kind": "odata",
-        "model": "srv/external/API_PRODUCT_SRV"
       }
     },
     "hana": {

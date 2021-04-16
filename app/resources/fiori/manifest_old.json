@@ -43,14 +43,14 @@
                         "parameters": {},
                         "additionalParameters": "allowed"
                     },
-                    "semanticObject": "Products",
+                    "semanticObject": "Sales",
                     "action": "display",
                     "title": "First Fiori app !",
                     "subTitle": "Business Application Fiori",
                     "icon": "sap-icon://sales-document",
                     "indicatorDataSource": {
                         "dataSource": "indicatorService",
-                        "path": "Products/$count",
+                        "path": "Sales/$count",
                         "refresh": 10
                     }
                 }
@@ -109,7 +109,7 @@
                     "target": "List"
                 },
                 {
-                        "pattern": "Products({key}):?query:",
+                        "pattern": "Sales({key}):?query:",
                     "name": "ObjectPage",
                     "target": "ObjectPage"
                 }
@@ -121,10 +121,10 @@
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
-                            "entitySet": "Products",
+                            "entitySet": "Sales",
                             "variantManagement": "Page",
                             "navigation": {
-                                "Products": {
+                                "Sales": {
                                     "detail": {
                                         "route": "ObjectPage"
                                     }
@@ -139,7 +139,7 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "entitySet": "Products"
+                            "entitySet": "Sales"
                         }
                     }
                 }
