@@ -61,8 +61,8 @@ sap.ui.define([
 								},
 								"resolutionResult": {
 									"applicationType": "SAPUI5",
-									"additionalInformation": "SAPUI5.Component=ns.app_abn",
-									"url": sap.ui.require.toUrl("ns/app_abn")
+									"additionalInformation": "SAPUI5.Component=ns.fiori3",
+									"url": sap.ui.require.toUrl("ns/fiori3")
 								}
 							}
 						}
@@ -81,7 +81,7 @@ sap.ui.define([
 		init: function () {
 			/**
 			 * Initializes the FLP sandbox
-			 * @returns {Promise} a promise that is resolved when the sandbox bootstrap has finshed
+			 * @returns {Promise} a promise that is resolved when the sandbox bootstrap has finished
 			 */
 
 			// sandbox is a singleton, so we can start it only once

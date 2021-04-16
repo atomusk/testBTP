@@ -2,24 +2,25 @@
 	"_version": "1.12.0",
 
 	"sap.app": {
-		"id": "ns.app_abn",
+			"id": "ns.fiori3",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"title": "{{appTitle}}",
 		"description": "{{appDescription}}",
 		"applicationVersion": {
-		    "version": "1.0.0"
+			"version": "1.0.0"
 		},
 		"ach": "set-ach",
+
 		"resources": "resources.json",
 		"dataSources": {
-			"mainService": {
-				"uri": "catalog/",
-				"type": "OData",
+            "mainService": {
+                "uri": "catalog/",
+                "type": "OData",
                 "settings": {
-                    "odataVersion": "2.0"
+                    "odataVersion": "4.0"
                 }
-			}
+            }
 		}
 	},
 
@@ -32,7 +33,7 @@
 	"sap.ui": {
 		"technology": "UI5",
 		"icons": {
-			"icon": "sap-icon://detail-view",
+			"icon": "sap-icon://task",
 			"favIcon": "",
 			"phone": "",
 			"phone@2": "",
@@ -48,7 +49,7 @@
 
 	"sap.ui5": {
 		"rootView": {
-			"viewName": "ns.app_abn.view.App",
+			"viewName": "ns.fiori3.view.App",
 			"type": "XML",
 			"async": true,
 			"id": "app"
@@ -76,24 +77,39 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "ns.app_abn.i18n.i18n"
+					"bundleName": "ns.fiori3.i18n.i18n"
 				}
 			},
 			"": {
 				"dataSource": "mainService",
-				"preload": true
+				"preload": true,
+				"settings": {
+					"operationMode": "Server",
+					"groupId": "$direct",
+					"synchronizationMode": "None",
+					"autoExpandSelect":true
+				}
+			}
+		},
+		"services": {
+			"ShellUIService": {
+				"factoryName": "sap.ushell.ui5service.ShellUIService",
+				"lazy": false,
+				"settings": {
+					"setTitle": "auto"
+				}
 			}
 		},
 
 		"routing": {
 			"config": {
-				"routerClass": "sap.f.routing.Router",
+				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
-				"viewPath": "ns.app_abn.view",
-				"controlId": "layout",
-				"controlAggregation": "beginColumnPages",
+				"viewPath": "ns.fiori3.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
 				"bypassed": {
-					"target": "notFound"
+					"target": ["notFound"]
 				},
 				"async": true
 			},
@@ -101,35 +117,32 @@
 			"routes": [
 				{
 					"pattern": "",
-					"name": "master",
-					"target": "master"
+					"name": "worklist",
+					"target": ["worklist"]
 				},
 				{
-					"pattern": "SalesOrder/{objectId}",
+					"pattern": "SalesOrder{objectId}",
 					"name": "object",
-					"target": [
-						"master",
-						"object"
-					]
+					"target": ["object"]
 				}
 			],
 
 			"targets": {
-				"master": {
-					"viewName": "Master",
+				"worklist": {
+					"viewName": "Worklist",
+					"viewId": "worklist",
 					"viewLevel": 1,
-					"viewId": "master"
+					"title": "{i18n>worklistViewTitle}"
 				},
 				"object": {
-					"viewName": "Detail",
-					"viewId": "detail",
-					"viewLevel": 1,
-					"controlAggregation": "midColumnPages"
+					"viewName": "Object",
+					"viewId": "object",
+					"viewLevel": 2,
+					"title": "{i18n>objectViewTitle}"
 				},
-				"detailObjectNotFound": {
-					"viewName": "DetailObjectNotFound",
-					"viewId": "detailObjectNotFound",
-					"controlAggregation": "midColumnPages"
+				"objectNotFound": {
+					"viewName": "ObjectNotFound",
+					"viewId": "objectNotFound"
 				},
 				"notFound": {
 					"viewName": "NotFound",
