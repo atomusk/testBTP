@@ -57,6 +57,10 @@
             "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_SALES_ORDER_SRV"
           }
         }
+      },
+      "YY1_VISEO_SERVICE_CDS": {
+        "kind": "odata",
+        "model": "srv/external/YY1_VISEO_SERVICE_CDS"
       }
     },
     "hana": {
