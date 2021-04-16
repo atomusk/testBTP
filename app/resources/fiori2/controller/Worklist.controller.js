@@ -4,8 +4,9 @@ sap.ui.define([
 	"sap/ui/core/routing/History",
 	"../model/formatter",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function (BaseController, JSONModel, History, formatter, Filter, FilterOperator) {
+    "sap/ui/model/FilterOperator",
+    "sap/ui/core/Fragment"
+], function (BaseController, JSONModel, History, formatter, Filter, FilterOperator, Fragment) {
 	"use strict";
 
 	return BaseController.extend("ns.fiori3.controller.Worklist", {
@@ -79,10 +80,45 @@ sap.ui.define([
 		 * @public
 		 */
 		onPress : function (oEvent) {
-			// The source is the list item that got pressed
-			//this._showObject(oEvent.getSource());
+            
+            var oViewModel = this.getModel("basket");
+            var mNewItem = oEvent.getSource().getBindingContext().getObject();
+
+            var aItems = oViewModel.getProperty("/items");
+            aItems.push(mNewItem);
+
+            var oButton = this.byId("basketButton");
+            var oButtonBadgeCustomData = oButton.getBadgeCustomData();
+
+            oViewModel.setProperty("/badgeCount", aItems.length)            
+            oViewModel.setProperty("/badgeVisible", aItems.length !== 0)
+
+
+            oButtonBadgeCustomData.setValue(aItems.length.toString());
+            
 		},
 
+        onBasketPress: function(oEvent) {
+            var oButton = oEvent.getSource();
+			var oView = this.getView();
+
+			// create popover
+			if (!this._pPopover) {
+				this._pPopover = Fragment.load({
+					id: oView.getId(),
+					name: "ns.fiori3.view.Basket",
+					controller: this
+				}).then(function(oPopover) {
+                    oView.addDependent(oPopover);
+                    oPopover.setModel(this.getModel("basket"), "basket")
+					//oPopover.bindElement("/basket");
+					return oPopover;
+				}.bind(this));
+			}
+			this._pPopover.then(function(oPopover) {
+				oPopover.openBy(oButton);
+			});
+        },
 
 		/**
 		 * Event handler when the share in JAM button has been clicked

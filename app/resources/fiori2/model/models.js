@@ -7,6 +7,17 @@ sap.ui.define([
 
 	return {
 
+        createBasketModel: function() {
+			var oModel = new JSONModel({
+                badgeVisible: false,
+                badgeCount: 0,
+                items: []
+            });
+
+            return oModel;
+
+        },  
+
 		createDeviceModel : function () {
 			var oModel = new JSONModel(Device);
 			oModel.setDefaultBindingMode("OneWay");
