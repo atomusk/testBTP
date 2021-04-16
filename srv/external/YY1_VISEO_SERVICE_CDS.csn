@@ -1,0 +1,190 @@
+{
+  "definitions": {
+    "YY1_VISEO_SERVICE_CDS": {
+      "kind": "service"
+    },
+    "YY1_VISEO_SERVICE_CDS.I_Scbo_ILM_Status_Text": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "language": {
+          "key": true,
+          "type": "cds.String",
+          "length": 2
+        },
+        "code": {
+          "key": true,
+          "type": "cds.String",
+          "length": 10
+        },
+        "description": {
+          "type": "cds.String",
+          "length": 60
+        }
+      }
+    },
+    "YY1_VISEO_SERVICE_CDS.P_Scbo_User": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "name": {
+          "key": true,
+          "type": "cds.String",
+          "length": 12
+        },
+        "description": {
+          "type": "cds.String",
+          "length": 80
+        }
+      }
+    },
+    "YY1_VISEO_SERVICE_CDS.YY1_ITEMS_VISEO_SERVICE": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "SAP_UUID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "SAP_PARENT_UUID": {
+          "type": "cds.UUID"
+        },
+        "ItemNumber": {
+          "type": "cds.String",
+          "length": 5
+        },
+        "Product": {
+          "type": "cds.String",
+          "length": 20
+        },
+        "quantity": {
+          "type": "cds.Decimal",
+          "precision": 10,
+          "scale": 2
+        },
+        "SAP_LifecycleStatus": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "SAP_LifecycleStatus_Text": {
+          "type": "cds.String",
+          "length": 60
+        },
+        "to_ILM_Status_Text": {
+          "type": "cds.Association",
+          "target": "YY1_VISEO_SERVICE_CDS.I_Scbo_ILM_Status_Text"
+        },
+        "to_VISEO_SERVICE": {
+          "type": "cds.Association",
+          "target": "YY1_VISEO_SERVICE_CDS.YY1_VISEO_SERVICE",
+          "on": [
+            {
+              "ref": [
+                "to_VISEO_SERVICE",
+                "SAP_UUID"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "SAP_PARENT_UUID"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "YY1_VISEO_SERVICE_CDS.YY1_VISEO_SERVICE": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "SAP_UUID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "OrderID": {
+          "type": "cds.String",
+          "length": 20
+        },
+        "SAP_Description": {
+          "type": "cds.String",
+          "length": 80
+        },
+        "OrderUser": {
+          "type": "cds.String",
+          "length": 20
+        },
+        "OrderStatus": {
+          "type": "cds.String",
+          "length": 20
+        },
+        "CreationDate": {
+          "type": "cds.Date"
+        },
+        "SAP_LifecycleStatus": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "SAP_LifecycleStatus_Text": {
+          "type": "cds.String",
+          "length": 60
+        },
+        "SAP_CreatedDateTime": {
+          "type": "cds.Timestamp"
+        },
+        "SAP_CreatedByUser": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "SAP_CreatedByUser_Text": {
+          "type": "cds.String",
+          "length": 80
+        },
+        "SAP_LastChangedDateTime": {
+          "type": "cds.Timestamp"
+        },
+        "SAP_LastChangedByUser": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "SAP_LastChangedByUser_Text": {
+          "type": "cds.String",
+          "length": 80
+        },
+        "to_ILM_Status_Text": {
+          "type": "cds.Association",
+          "target": "YY1_VISEO_SERVICE_CDS.I_Scbo_ILM_Status_Text"
+        },
+        "to_Items": {
+          "type": "cds.Association",
+          "target": "YY1_VISEO_SERVICE_CDS.YY1_ITEMS_VISEO_SERVICE",
+          "cardinality": {
+            "max": "*"
+          },
+          "on": [
+            {
+              "ref": [
+                "to_Items",
+                "SAP_PARENT_UUID"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "SAP_UUID"
+              ]
+            }
+          ]
+        },
+        "to_SAPSysAdminDataChangeUser": {
+          "type": "cds.Association",
+          "target": "YY1_VISEO_SERVICE_CDS.P_Scbo_User"
+        },
+        "to_SAPSysAdminDataCreateUser": {
+          "type": "cds.Association",
+          "target": "YY1_VISEO_SERVICE_CDS.P_Scbo_User"
+        }
+      }
+    }
+  }
+}

@@ -36,9 +36,6 @@
           },
           "[development]": {
             "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_PRODUCT_SRV"
-          },
-          "[development_old]": {
-            "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_PRODUCT_SRV"
           }
         }
       },
@@ -52,9 +49,19 @@
           },
           "[development]": {
             "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_SALES_ORDER_SRV"
+          }
+        }
+      },
+      "YY1_VISEO_SERVICE_CDS": {
+        "kind": "odata",
+        "model": "srv/external/YY1_VISEO_SERVICE_CDS",
+        "credentials": {
+          "[production]": {
+            "destination": "Viseo_Ext",
+            "path": "sap/opu/odata/sap/YY1_VISEO_SERVICE_CDS"
           },
-          "[development_old]": {
-            "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_SALES_ORDER_SRV"
+          "[development]": {
+            "url": "https://my301481.s4hana.ondemand.com/sap/opu/odata/sap/YY1_VISEO_SERVICE_CDS/"
           }
         }
       }

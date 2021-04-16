@@ -8,10 +8,12 @@ module.exports = cds.service.impl(async function () {
     
     const s4hcso = await cds.connect.to('API_SALES_ORDER_SRV');
     const s4hcprod = await cds.connect.to('API_PRODUCT_SRV');
+    const s4hcserv = await cds.connect.to('YY1_VISEO_SERVICE_CDS');
 
     const { 
         Sales,
         SalesOrders,
+        Viseo_Service,
         Products
     } = this.entities;
 
@@ -118,6 +120,56 @@ module.exports = cds.service.impl(async function () {
     });
 
 
+    //Get S4Cloud Service Sales Order
+    this.on('READ', SalesOrders, async (req) => {
+        console.log("read sales orders !")
+        try {
+            const tx = s4hcso.transaction(req);
+            return await tx.send({
+                query: req.query,
+                headers: {
+                    'Application-Interface-Key': process.env.ApplicationInterfaceKey,
+                    'APIKey': process.env.APIKey
+                }
+            })
+        } catch (err) {
+            req.reject(err);
+        }
+    });
 
+    //Get S4Cloud Service Sales Order
+    this.on('READ', Viseo_Service, async (req) => {
+        console.log("read Temp sales orders !")
+        try {
+            const tx = s4hcserv.transaction(req);
+            return await tx.send({
+                query: req.query,
+                headers: {
+                    'Application-Interface-Key': process.env.ApplicationInterfaceKey,
+                    'APIKey': process.env.APIKey
+                }
+            })
+        } catch (err) {
+            req.reject(err);
+        }
+    });
 
+    /*
+        //Update HANA db with sales boost (add 250 to amount)
+    this.on('CreatePO', async req => {
+        try {
+            const ID = req.params[0];
+            const tx = cds.tx(req);
+            await tx.update(Sales)
+                .with({ amount: { '+=': 250 }, comments: 'Boosted!' })
+                .where({ ID: { '=': ID } })
+                ;
+            debug('Boosted ID:', ID);
+            return {};
+        } catch (err) {
+            console.error(err);
+            return {};
+        }
+    });
+*/
 });
