@@ -7,9 +7,8 @@
 		"i18n": "i18n/i18n.properties",
 		"title": "{{appTitle}}",
 		"description": "{{appDescription}}",
-
 		"applicationVersion": {
-		"version": "1.0.0"
+		    "version": "1.0.0"
 		},
 		"ach": "set-ach",
 		"resources": "resources.json",
@@ -18,7 +17,7 @@
 				"uri": "catalog/",
 				"type": "OData",
                 "settings": {
-                    "odataVersion": "4.0"
+                    "odataVersion": "2.0"
                 }
 			}
 		}

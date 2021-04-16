@@ -11,7 +11,7 @@
         "applicationVersion": {
             "version": "0.0.1"
         },
-        "title": "TestAPP Fiori",
+        "title": "Create a sales order",
         "description": "Business Application Fiori",
         "dataSources": {
             "mainService": {
@@ -20,8 +20,7 @@
                 "settings": {
                     "odataVersion": "4.0"
                 }
-            }
-            ,
+            },
             "indicatorService": {
                 "uri": "app_abn-service.app_abnfiori/catalog/",
                 "type": "OData",
