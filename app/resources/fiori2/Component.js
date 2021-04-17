@@ -28,7 +28,10 @@ sap.ui.define([
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
 			// set the FLP model
-			this.setModel(models.createFLPModel(), "FLP");
+            this.setModel(models.createFLPModel(), "FLP");
+            
+            //Create basket model
+            this.setModel(models.createBasketModel(), "basket")
 
 			// create the views based on the url/hash
 			this.getRouter().initialize();

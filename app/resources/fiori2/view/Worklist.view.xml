@@ -38,8 +38,22 @@
 							id="searchField"
 							tooltip="{i18n>worklistSearchTooltip}"
 							search=".onSearch"
+                            visible="false"
 							width="auto">
 						</SearchField>
+                        <Button
+                            id="basketButton"
+                            icon="sap-icon://cart"  
+                            tooltip="Basket"
+                            class="sapUiTinyMarginBeginEnd"
+                            press=".onBasketPress">
+                            <customData>
+                                <BadgeCustomData
+                                    key="badge"
+                                    value="{basket>/badgeCount}"
+                                    visible="{basket>/badgeVisible}"/>
+                            </customData>                            
+                        </Button>
 					</Toolbar>
 				</headerToolbar>
 
@@ -76,9 +90,6 @@
 				</items>
 			</Table>
 		</semantic:content>
-
-    <semantic:addAction>
-    </semantic:addAction>
 
 		<!--
 		<semantic:sendEmailAction>
