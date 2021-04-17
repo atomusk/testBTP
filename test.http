@@ -20,3 +20,11 @@ GET http://localhost:4004/catalog/Sales(9)/CatalogService.largestOrder()
 ###
 GET http://localhost:4004/catalog/Viseo_Service
 ###
+
+
+###
+POST http://localhost:4004/catalog/Viseo_Service
+Content-Type: application/json
+
+{} 
+###
