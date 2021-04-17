@@ -26,5 +26,7 @@ GET http://localhost:4004/catalog/Viseo_Service
 POST http://localhost:4004/catalog/Viseo_Service
 Content-Type: application/json
 
-{} 
+{
+    "SAP_Description": "Test aba"
+} 
 ###

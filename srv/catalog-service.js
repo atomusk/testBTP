@@ -155,6 +155,11 @@ module.exports = cds.service.impl(async function () {
         }
     });
 
+
+    this.before("CREATE", Viseo_Service, async(req) => {
+        log.info("create Temp sales orders !")
+    })
+
     //Get S4Cloud Service Sales Order
     this.on('READ', Viseo_Service_item, async (req) => {
         console.log("read Temp sales orders items !")
