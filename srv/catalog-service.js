@@ -14,6 +14,7 @@ module.exports = cds.service.impl(async function () {
         Sales,
         SalesOrders,
         Viseo_Service,
+        Viseo_Service_item,
         Products
     } = this.entities;
 
@@ -154,6 +155,22 @@ module.exports = cds.service.impl(async function () {
         }
     });
 
+    //Get S4Cloud Service Sales Order
+    this.on('READ', Viseo_Service_item, async (req) => {
+        console.log("read Temp sales orders items !")
+        try {
+            const tx = s4hcserv.transaction(req);
+            return await tx.send({
+                query: req.query,
+                headers: {
+                    'Application-Interface-Key': process.env.ApplicationInterfaceKey,
+                    'APIKey': process.env.APIKey
+                }
+            })
+        } catch (err) {
+            req.reject(err);
+        }
+    });
     /*
         //Update HANA db with sales boost (add 250 to amount)
     this.on('CreatePO', async req => {
