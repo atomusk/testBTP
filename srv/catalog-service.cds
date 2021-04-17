@@ -37,7 +37,7 @@ service CatalogService @(path : '/catalog')
             ItemCategoryGroup        
     }
 
-    @readonly
+ 
     entity Viseo_Service 
         as projection on YY1_VISEO_SERVICE_CDS.YY1_VISEO_SERVICE {
                SAP_UUID,
@@ -45,9 +45,11 @@ service CatalogService @(path : '/catalog')
                SAP_Description,
                OrderUser,
                OrderStatus,
-               CreationDate
+               CreationDate,
+               to_Items
     }
-    @readonly
+
+    
     entity Viseo_Service_item 
         as projection on YY1_VISEO_SERVICE_CDS.YY1_ITEMS_VISEO_SERVICE {
                SAP_UUID,

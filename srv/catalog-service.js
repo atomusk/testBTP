@@ -6,7 +6,7 @@ log.registerCustomFields(["country", "amount"]);
 
 module.exports = cds.service.impl(async function () {
     
-    const s4hcso = await cds.connect.to('API_SALES_ORDER_SRV');
+    const s4hcso   = await cds.connect.to('API_SALES_ORDER_SRV');
     const s4hcprod = await cds.connect.to('API_PRODUCT_SRV');
     const s4hcserv = await cds.connect.to('YY1_VISEO_SERVICE_CDS');
 
@@ -154,15 +154,14 @@ module.exports = cds.service.impl(async function () {
         }
     });
 
-    /*
+    
         //Update HANA db with sales boost (add 250 to amount)
-    this.on('CreatePO', async req => {
+    /*this.on('CREATE',Viseo_Service, async req => {
         try {
             const ID = req.params[0];
             const tx = cds.tx(req);
-            await tx.update(Sales)
-                .with({ amount: { '+=': 250 }, comments: 'Boosted!' })
-                .where({ ID: { '=': ID } })
+            await tx.insert(req)
+                .into(Viseo_Service)
                 ;
             debug('Boosted ID:', ID);
             return {};
@@ -170,6 +169,6 @@ module.exports = cds.service.impl(async function () {
             console.error(err);
             return {};
         }
-    });
-*/
+    });*/
+
 });

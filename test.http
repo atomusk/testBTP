@@ -9,10 +9,14 @@ Content-Type: application/json
 
 {} 
 ###
-GET http://localhost:4004/catalog/topSales(amount=700)
+GET http://localhost:4004/catalog/topSales(amount=70)
 ###
 GET http://localhost:4004/catalog/SalesOrders?$top=10&$filter=TotalNetAmount%20gt%202000&$orderby=SalesOrder%20desc
 ###
+
+GET http://localhost:4004/catalog/SalesOrders
+###
+
 GET http://localhost:4004/catalog/Sales(9)/CatalogService.largestOrder()
 ###
 
@@ -20,3 +24,21 @@ GET http://localhost:4004/catalog/Sales(9)/CatalogService.largestOrder()
 ###
 GET http://localhost:4004/catalog/Viseo_Service
 ###
+
+POST http://localhost:4004/catalog/Viseo_Service 
+    Content-Type: application/json;charset=UTF-8;IEEE754Compatible=true        
+
+    { "OrderID" : "1", "SAP_Description": "test", "to_Items":[
+        { "Product": "123", "quantity": "5.000"},
+        { "Product": "4" , "quantity": "5.000"}
+    ]}
+
+###
+
+POST http://localhost:4004/catalog/Viseo_Service 
+    Content-Type: application/json;charset=UTF-8;IEEE754Compatible=true        
+
+    { "OrderID" : "1", "SAP_Description": "test", "to_Items":[
+        { "Product": "123", "quantity": "5.000"},
+        { "Product": "4" , "quantity": "5.000"}
+    ]}
