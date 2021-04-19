@@ -38,7 +38,8 @@ service CatalogService @(path : '/catalog')
             Product,
             ProductType,
             ProductGroup,
-            ItemCategoryGroup  
+            ItemCategoryGroup,
+            to_Description   
     }
 
  
