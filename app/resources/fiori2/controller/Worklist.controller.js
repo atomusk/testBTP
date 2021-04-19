@@ -96,7 +96,37 @@ sap.ui.define([
 
             oButtonBadgeCustomData.setValue(aItems.length.toString());
             
-		},
+        },
+        
+        onCreateSOPress: function(oEvent) {
+            
+            var oBasketModel = this.getModel("basket")     
+            var aItems = oBasketModel.getProperty("/items")
+            console.log(oBasketModel.getData())
+
+            if (aItems.length > 0) {
+                    
+                var oBinding = this.getModel().bindList("/Viseo_Service");
+                var iItem = 0;
+                
+                var oContext = oBinding.create({
+                    OrderUser: "CUSTOMER",
+                    to_Items: aItems.map(function(mItem) {
+                        iItem += 10;
+                        
+                        return {
+                            ItemNumber: iItem.toString(),
+                            Product: mItem.Product,
+                            quantity: "1"
+                        }
+                    })
+                })    
+                
+                oContext.created().then(function() {
+                    console.log("ok !!")
+                }.bind(this))
+            }
+        },
 
         onBasketPress: function(oEvent) {
             var oButton = oEvent.getSource();
