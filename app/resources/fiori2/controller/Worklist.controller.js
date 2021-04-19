@@ -97,6 +97,10 @@ sap.ui.define([
             oButtonBadgeCustomData.setValue(aItems.length.toString());
             
         },
+
+        getRandomInt: function(iMax) {
+            return Math.floor(Math.random() * iMax);
+        },
         
         onCreateSOPress: function(oEvent) {
             
@@ -106,18 +110,20 @@ sap.ui.define([
 
             if (aItems.length > 0) {
                     
-                var oBinding = this.getModel().bindList("/Viseo_Service");
+                var oBinding = this.getModel().bindList("/Sales");
                 var iItem = 0;
                 
                 var oContext = oBinding.create({
-                    OrderUser: "CUSTOMER",
-                    to_Items: aItems.map(function(mItem) {
-                        iItem += 10;
-                        
+                    ID: this.getRandomInt(99999),
+                    region: "FR",
+                    country: "France",
+                    org: "1710",
+                    comments: "", 
+                    amount: 0,
+                    items: aItems.map(function(mItem) {
                         return {
-                            ItemNumber: iItem.toString(),
-                            Product: mItem.Product,
-                            quantity: "1"
+                            product: mItem.Product,
+                            quantity: 1
                         }
                     })
                 })    
