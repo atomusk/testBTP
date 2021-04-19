@@ -99,7 +99,7 @@ sap.ui.define([
         },
 
         getRandomInt: function(iMax) {
-            return Math.floor(Math.random() * max);
+            return Math.floor(Math.random() * iMax);
         },
         
         onCreateSOPress: function(oEvent) {
@@ -119,7 +119,7 @@ sap.ui.define([
                     country: "France",
                     org: "1710",
                     comments: "", 
-                    org: "",
+                    amount: 0,
                     items: aItems.map(function(mItem) {
                         return {
                             product: mItem.Product,
