@@ -37,6 +37,8 @@ POST http://localhost:4004/catalog/Viseo_Service
     { "SAP_UUID": "cef0cbf3-6458-4f13-a418-ee4d7e7505dd", "OrderID" : "1", "SAP_Description": "test"}
 
 ###
+POST http://localhost:4004/catalog/Viseo_Service
+Content-Type: application/json
 
 POST http://localhost:4004/catalog/Viseo_Service 
     Content-Type: application/json;charset=UTF-8;IEEE754Compatible=true        
@@ -47,7 +49,7 @@ POST http://localhost:4004/catalog/Viseo_Service
     ]}
 
 ###
-get http://localhost:4004/catalog/Sales?$localhost:4004/catalog/Sales?$expand=items
+get http://localhost:4004/catalog/Sales?$expand=items
 
 ###
 
@@ -69,3 +71,14 @@ POST http://localhost:4004/catalog/Sales
         { "product": "4" , "quantity": 5}
     ]
     } 
+
+
+###
+
+POST   http://localhost:4004/catalog/SalesOrders
+    Content-Type: application/json;charset=UTF-8;IEEE754Compatible=true        
+
+    {
+     "SalesOrderType": "SO03",
+     "SoldToParty": "17100012"
+    }

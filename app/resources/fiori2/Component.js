@@ -6,7 +6,7 @@ sap.ui.define([
 ], function (UIComponent, Device, models, ErrorHandler) {
 	"use strict";
 
-	return UIComponent.extend("ns.fiori3.Component", {
+	return UIComponent.extend("app_abn-fiori2.Component", {
 
 		metadata : {
 			manifest: "json"

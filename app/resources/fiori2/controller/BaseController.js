@@ -8,7 +8,7 @@ sap.ui.define([
 	// shortcut for sap.m.URLHelper
 	var URLHelper = mobileLibrary.URLHelper;
 
-	return Controller.extend("ns.fiori3.controller.BaseController", {
+	return Controller.extend("app_abn-fiori2.controller.BaseController", {
 		/**
 		 * Convenience method for accessing the router.
 		 * @public

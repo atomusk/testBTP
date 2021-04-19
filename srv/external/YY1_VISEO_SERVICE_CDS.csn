@@ -40,7 +40,6 @@
     },
     "YY1_VISEO_SERVICE_CDS.YY1_ITEMS_VISEO_SERVICE": {
       "kind": "entity",
-      "@cds.persistence.skip": true,
       "elements": {
         "SAP_UUID": {
           "key": true,
@@ -96,7 +95,6 @@
     },
     "YY1_VISEO_SERVICE_CDS.YY1_VISEO_SERVICE": {
       "kind": "entity",
-      "@cds.persistence.skip": true,
       "elements": {
         "SAP_UUID": {
           "key": true,

@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (BaseController) {
 	"use strict";
 
-	return BaseController.extend("ns.fiori3.controller.App", {
+	return BaseController.extend("app_abn-fiori2.controller.App", {
 
 		onInit : function () {
 			// apply content density mode to root view

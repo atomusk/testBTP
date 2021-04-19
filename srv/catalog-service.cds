@@ -51,7 +51,6 @@ service CatalogService @(path : '/catalog')
                CreationDate,
                to_Items
     }
-
     
     entity Viseo_Service_item 
         as projection on YY1_VISEO_SERVICE_CDS.YY1_ITEMS_VISEO_SERVICE {

@@ -11,7 +11,7 @@
 				<ToolbarSpacer/>
 				<Button
 					text="Create Sales Order"
-					press="createSO" />
+					press=".onCreateSOPress" />
 			</OverflowToolbar>
 		</footer>
         <Table
