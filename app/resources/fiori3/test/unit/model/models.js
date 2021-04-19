@@ -1,5 +1,5 @@
 sap.ui.define([
-	"ns/fiori3/model/models",
+	"app_abn/fiori3/model/models",
 	"sap/ui/Device"
 ], function (models, Device) {
 	"use strict";

@@ -104,7 +104,7 @@ sap.ui.define([
             
             //API Key for API Sandbox
             var oModel = this.getModel();
-            oModel.setUseBatch(true);
+            var oBinding = this.getModel().bindList("/SalesOrders");
 
             //adding request headers
             oModel.setHeaders( {
@@ -189,22 +189,12 @@ sap.ui.define([
                     }
                 ]
             };
-            oModel.create("/SalesOrders", oData, [], true);
 
-            //Available API Endpoints
-            //https://{host}:{port}/sap/opu/odata/sap/API_SALES_ORDER_SRV
+            var oContext = oBinding.create(oData);    
+            oContext.created().then(function() {
+                console.log("ok !!")
+            }.bind(this));
 
-            //You can assign the created data model to a View and UI5 controls can be bound to it. Please refer documentation available at the below link for more information.
-            //https://sapui5.hana.ondemand.com/#docs/guide/6c47b2b39db9404582994070ec3d57a2.html#loio6c47b2b39db9404582994070ec3d57a2
-
-            //The below code snippet for printing on the console is for testing/demonstration purpose only. This must not be done in real UI5 applications.
-            oModel.attachRequestCompleted(function(oEvent){
-                var oData = oEvent.getSource().oData;
-                console.log(oData);
-        });
-
-
-            
         },
 
 		/**

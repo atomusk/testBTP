@@ -6,7 +6,7 @@ sap.ui.define([
 
 	// define ushell config
 	ObjectPath.set(["sap-ushell-config"], {
-		defaultRenderer: "fiori2",
+		defaultRenderer: "fiori3",
 		bootstrapPlugins: {
 			"RuntimeAuthoringPlugin": {
 				component: "sap.ushell.plugins.rta",
@@ -22,7 +22,7 @@ sap.ui.define([
 			}
 		},
 		renderers: {
-			fiori2: {
+			fiori3: {
 				componentData: {
 					config: {
 						enableSearch: false,
@@ -62,7 +62,7 @@ sap.ui.define([
 								"resolutionResult": {
 									"applicationType": "SAPUI5",
 									"additionalInformation": "SAPUI5.Component=app_abn-fiori3",
-									"url": sap.ui.require.toUrl("ns/fiori3")
+                                    "url": sap.ui.require.toUrl("app_abn/fiori3")
 								}
 							}
 						}

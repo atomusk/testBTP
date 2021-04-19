@@ -6,7 +6,7 @@ sap.ui.getCore().attachInit(function() {
 	"use strict";
 
 	sap.ui.require([
-		"ns/fiori3/test/integration/AllJourneys"
+		"app_abn/fiori3/test/integration/AllJourneys"
 	], function() {
 		QUnit.start();
 	});

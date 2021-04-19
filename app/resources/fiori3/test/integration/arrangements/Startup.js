@@ -1,7 +1,7 @@
 sap.ui.define([
 	"sap/ui/test/Opa5",
 	"sap/ui/core/routing/HashChanger",
-	"ns/fiori3/test/flpSandbox",
+	"app_abn/fiori3/test/flpSandbox",
 	"sap/ui/fl/FakeLrepConnectorLocalStorage"
 ], function(Opa5, HashChanger, flpSandbox, FakeLrepConnectorLocalStorage) {
 "use strict";

@@ -1,5 +1,5 @@
 sap.ui.define([
-"ns/fiori3/model/formatter"
+"app_abn/fiori3/model/formatter"
 ], function (formatter) {
 	"use strict";
 
