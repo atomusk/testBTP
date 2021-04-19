@@ -18,7 +18,7 @@ service CatalogService @(path : '/catalog')
        
     function topSales
         (amount: Integer)
-        returns many Sales;
+        returns many Sales; 
 
     entity SalesOrders
         as projection on API_SALES_ORDER_SRV.A_SalesOrder {

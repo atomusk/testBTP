@@ -210,7 +210,7 @@ module.exports = cds.service.impl(async function () {
                     'APIKey': process.env.APIKey
                 }
             })                          
-
+ 
         } catch (err) {
             req.error(err  );
             return {};
