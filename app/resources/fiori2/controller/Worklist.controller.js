@@ -124,7 +124,7 @@ sap.ui.define([
                         iItem += 10
 
                         return {
-                            ID: iItem.toString(),
+                            ID: iItem,
                             product: mItem.Product,
                             quantity: 1
                         }
