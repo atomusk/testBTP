@@ -110,7 +110,8 @@ sap.ui.define([
             var oBinding = this.getModel().bindList("/SalesOrders");
 
             var oData = [];
-            var oContext;
+            var oContext;            
+            var current_date = this._formatDate(new Date());
 
             oSelectedSO.forEach(function(SO){
                 oData = {
@@ -120,12 +121,12 @@ sap.ui.define([
                     "OrganizationDivision": "00",
                     "SoldToParty": "17100012",
                     "PurchaseOrderByCustomer": SO.SAP_Description,
-                    "SalesOrderDate": new Date(),
+                    "SalesOrderDate": current_date,
                     "TransactionCurrency": "EUR",
                     "SDDocumentReason": "",
-                    "PricingDate": new Date(),
+                    "PricingDate": current_date,
                     "PriceDetnExchangeRate": "1.00000",
-                    "RequestedDeliveryDate": new Date(),
+                    "RequestedDeliveryDate": current_date,
                     "ShippingCondition": "01",
                     "CompleteDeliveryIsDefined": false,
                     "IncotermsClassification": "CFR",
@@ -145,7 +146,7 @@ sap.ui.define([
                             "PurchaseOrderByCustomer": "test2",
                             "PurchaseOrderByShipToParty": "",
                             "Material": "TG12",
-                            "PricingDate": "/Date(1618185600000)/",
+                            "PricingDate": current_date,
                             "RequestedQuantity": "3",
                             "RequestedQuantityUnit": "PC",
                             "RequestedQuantitySAPUnit": "ST",
@@ -272,7 +273,24 @@ sap.ui.define([
 			if (aTableSearchState.length !== 0) {
 				oViewModel.setProperty("/tableNoDataText", this.getResourceBundle().getText("worklistNoDataWithSearchText"));
 			}
-		}
+        },
+        
+
+        _formatDate: function(date) {            
+            var year = date.getFullYear();
+            var day = date.getDay();
+            var month = date.getMonth();
+            
+            if(day.length == 1){
+                day = "0" + day;
+            }
+
+            if(month.length == 1){
+                day = "0" + month;
+            }
+            
+            return year + '-' + month + '-' + day;
+        }
 
 	});
 });
