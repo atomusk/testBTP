@@ -50,3 +50,23 @@ annotate catalog.Sales with {
   amount   @title : '{i18n>amount}';
   comments @title : '{i18n>comments}';
 };
+
+annotate catalog.Viseo_Service with @(UI : {
+    Identification  : [{Value : OrderID}],
+    SelectionFields : [],
+    LineItem: [
+        {Value: OrderID},
+        {Value: SAP_Description},
+        {Value: OrderUser},
+        {Value: OrderStatus},
+        {Value: CreationDate}
+    ]
+});
+
+annotate catalog.Viseo_Service with {
+  OrderID           @title : 'ID';
+  SAP_Description   @title : 'Description';
+  OrderUser         @title : 'User';
+  OrderStatus       @title : 'Order status';
+  CreationDate      @title : 'Creation Date';
+};

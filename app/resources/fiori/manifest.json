@@ -42,14 +42,14 @@
                         "parameters": {},
                         "additionalParameters": "allowed"
                     },
-                    "semanticObject": "Products",
-                    "action": "display",
-                    "title": "First Fiori app !",
+                    "semanticObject": "Sales",
+                    "action": "manage",
+                    "title": "Sales order manage",
                     "subTitle": "Business Application Fiori",
-                    "icon": "sap-icon://sales-document",
+                    "icon": "sap-icon://sales-approve",
                     "indicatorDataSource": {
                         "dataSource": "indicatorService",
-                        "path": "Products/$count",
+                        "path": "Viseo_Service/$count",
                         "refresh": 10
                     }
                 }
@@ -108,7 +108,7 @@
                     "target": "List"
                 },
                 {
-                        "pattern": "Products({key}):?query:",
+                        "pattern": "SalesOrders({key}):?query:",
                     "name": "ObjectPage",
                     "target": "ObjectPage"
                 }
@@ -120,10 +120,10 @@
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
-                            "entitySet": "Products",
+                            "entitySet": "Viseo_Service",
                             "variantManagement": "Page",
                             "navigation": {
-                                "Products": {
+                                "SalesOrders": {
                                     "detail": {
                                         "route": "ObjectPage"
                                     }
@@ -138,7 +138,7 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "entitySet": "Products"
+                            "entitySet": "Viseo_Service"
                         }
                     }
                 }

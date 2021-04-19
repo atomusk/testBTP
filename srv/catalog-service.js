@@ -146,11 +146,7 @@ module.exports = cds.service.impl(async function () {
         try {
             const tx = s4hcserv.transaction(req);
             return await tx.send({
-                query: req.query,
-                headers: {
-                    'Application-Interface-Key': process.env.ApplicationInterfaceKey,
-                    'APIKey': process.env.APIKey
-                }
+                query: req.query
             })
         } catch (err) {
             req.reject(err);
