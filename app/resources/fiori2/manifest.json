@@ -1,5 +1,5 @@
 {
-	"_version": "1.12.0",
+	"_version": "",
     "sap.cloud": {
         "public": true,
         "service": "app_abn-service"

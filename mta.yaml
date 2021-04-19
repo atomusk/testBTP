@@ -103,7 +103,7 @@ modules:
           name: app_abn-fiori
           target-path: gen/app/
         - artifacts:
-            - fiori-content2.zip
+            - fiori2-content.zip
           name: app_abn-fiori2
           target-path: gen/app/
 
