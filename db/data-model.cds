@@ -1,5 +1,4 @@
-namespace app_abn.db;
-
+context app_abn.db {
 entity Sales {
   key ID       : Integer;
       region   : String(100);
@@ -16,4 +15,4 @@ entity SalesItem{
     quantity : Integer;
     parent : Association to Sales;
 };
- 
+}
