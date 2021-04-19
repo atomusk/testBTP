@@ -34,7 +34,8 @@ sap.ui.define([
 				shareOnJamTitle: this.getResourceBundle().getText("worklistTitle"),
 				shareSendEmailSubject: this.getResourceBundle().getText("shareSendEmailWorklistSubject"),
 				shareSendEmailMessage: this.getResourceBundle().getText("shareSendEmailWorklistMessage", [location.href]),
-				tableNoDataText : this.getResourceBundle().getText("tableNoDataText")
+                tableNoDataText : this.getResourceBundle().getText("tableNoDataText"),
+                selectedSalesOrder: []
 			});
 			this.setModel(oViewModel, "worklistView");
 
@@ -98,41 +99,31 @@ sap.ui.define([
             
 		},
 
-        onApprovePress: function() {
+        onApprovePress: function(oEvent) {
 //            var oButton = oEvent.getSource();
 //            var oView = this.getView();
             
             //API Key for API Sandbox
-            var oModel = this.getModel();
+            var oModel = this.getModel("worklistView");
+            var oSelectedSO = this.getSelectedItems();
+            oModel.setProperty("/selectedSalesOrder", oSelectedSO);
+
+            oSelectedSO.forEach(function(SO){
+            
             var oBinding = this.getModel().bindList("/SalesOrders");
-
-            //adding request headers
-            oModel.setHeaders( {
-                "Content-Type":"application/json",
-                "Accept":"application/json",
-                "APIKey":"keYFzrr0TrC7FxFptgehXJYQyKNzpRUG"
-            });
-
-            //Available Security Schemes for productive API Endpoints
-            //Basic Authentication
-
-            //Basic Auth : provide username:password in Base64 encoded in Authorization header
-
-            //sending request
-            //API endpoint for API sandbox 
             var oData = {
                 "SalesOrderType": "OR",
                 "SalesOrganization": "1710",
                 "DistributionChannel": "10",
                 "OrganizationDivision": "00",
                 "SoldToParty": "17100012",
-                "PurchaseOrderByCustomer": "test2",
-                "SalesOrderDate": "/Date(1618185600000)/",
-                "TransactionCurrency": "USD",
+                "PurchaseOrderByCustomer": SO.SAP_Description,
+                "SalesOrderDate": new Date(),
+                "TransactionCurrency": "EUR",
                 "SDDocumentReason": "",
-                "PricingDate": "/Date(1618185600000)/",
+                "PricingDate": new Date(),
                 "PriceDetnExchangeRate": "1.00000",
-                "RequestedDeliveryDate": "/Date(1618531200000)/",
+                "RequestedDeliveryDate": new Date(),
                 "ShippingCondition": "01",
                 "CompleteDeliveryIsDefined": false,
                 "IncotermsClassification": "CFR",
@@ -194,6 +185,9 @@ sap.ui.define([
             oContext.created().then(function() {
                 console.log("ok !!")
             }.bind(this));
+
+
+            });
 
         },
 

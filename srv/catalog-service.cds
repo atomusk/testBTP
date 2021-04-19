@@ -24,13 +24,77 @@ service CatalogService @(path : '/catalog')
     entity SalesOrders
         as projection on API_SALES_ORDER_SRV.A_SalesOrder {
             SalesOrder,
+            SalesOrderType,
             SalesOrganization,
             DistributionChannel,
+            OrganizationDivision,
             SoldToParty,
+            PurchaseOrderByCustomer,
+            SalesOrderDate,
+            TransactionCurrency,
+            SDDocumentReason,
+            PricingDate,
+            PriceDetnExchangeRate,
+            RequestedDeliveryDate,
+            ShippingCondition,
+            CompleteDeliveryIsDefined,
+            IncotermsClassification,
+            IncotermsTransferLocation,
             IncotermsLocation1,
-            TotalNetAmount,
-            SalesOrderType,
-            TransactionCurrency
+            CustomerPaymentTerms,
+            CustomerAccountAssignmentGroup,
+            AccountingExchangeRate,
+            CustomerGroup,
+            SlsDocIsRlvtForProofOfDeliv,
+            to_Item, 
+            to_Partner
+    };
+
+    entity SalesOrdersItems
+        as projection on API_SALES_ORDER_SRV.A_SalesOrderItem {
+            SalesOrder,
+            SalesOrderItem,
+            HigherLevelItem,
+            SalesOrderItemCategory,
+            SalesOrderItemText,
+            PurchaseOrderByCustomer,
+            PurchaseOrderByShipToParty,
+            Material,
+            PricingDate,
+            RequestedQuantity,
+            RequestedQuantityUnit,
+            RequestedQuantitySAPUnit,
+            RequestedQuantityISOUnit,
+            ItemWeightSAPUnit,
+            ItemWeightISOUnit,
+            ItemVolumeSAPUnit,
+            ItemVolumeISOUnit,
+            MaterialGroup,
+            ProductionPlant,
+            StorageLocation,
+            DeliveryGroup,
+            ShippingPoint,
+            DeliveryPriority,
+            IncotermsClassification,
+            IncotermsTransferLocation,
+            IncotermsLocation1,
+            ProductTaxClassification1,
+            MatlAccountAssignmentGroup,
+            CustomerPaymentTerms,
+            FixedValueDate,
+            CustomerGroup,
+            SlsDocIsRlvtForProofOfDeliv,
+            ProfitCenter
+    };
+
+    entity SalesOrdersPartners
+        as projection on API_SALES_ORDER_SRV.A_SalesOrderHeaderPartner {
+            SalesOrder,
+            PartnerFunction,
+            Customer,
+            Supplier,
+            Personnel,
+            ContactPerson
     };
 
     entity Products 
