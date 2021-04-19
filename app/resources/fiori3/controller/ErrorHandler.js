@@ -6,14 +6,14 @@ sap.ui.define([
 ], function (UI5Object, MessageBox, Filter, FilterOperator) {
 	"use strict";
 
-	return UI5Object.extend("ns.fiori3.controller.ErrorHandler", {
+	return UI5Object.extend("app_abn-fiori3.controller.ErrorHandler", {
 
 		/**
 		 * Handles application errors by automatically attaching to the model events and displaying errors when needed.
 		 * @class
 		 * @param {sap.ui.core.UIComponent} oComponent reference to the app's component
 		 * @public
-		 * @alias ns.fiori3.controller.ErrorHandler
+		 * @alias app_abn-fiori3.controller.ErrorHandler
 		 */
 		constructor : function (oComponent) {
 			var	oMessageManager = sap.ui.getCore().getMessageManager(),

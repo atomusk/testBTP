@@ -9,7 +9,7 @@ sap.ui.define([
 ], function (BaseController, JSONModel, History, formatter, Filter, FilterOperator, Fragment) {
 	"use strict";
 
-	return BaseController.extend("ns.fiori3.controller.Worklist", {
+	return BaseController.extend("app_abn-fiori3.controller.Worklist", {
 
 		formatter: formatter,
 

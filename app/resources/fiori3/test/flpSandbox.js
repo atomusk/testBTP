@@ -61,7 +61,7 @@ sap.ui.define([
 								},
 								"resolutionResult": {
 									"applicationType": "SAPUI5",
-									"additionalInformation": "SAPUI5.Component=ns.fiori3",
+									"additionalInformation": "SAPUI5.Component=app_abn-fiori3",
 									"url": sap.ui.require.toUrl("ns/fiori3")
 								}
 							}

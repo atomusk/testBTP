@@ -9,7 +9,7 @@ sap.ui.define([
 	Opa5.extendConfig({
 		arrangements: new Startup(),
 		assertions: new FLP(),
-		viewNamespace: "ns.fiori3.view."
+		viewNamespace: "app_abn-fiori3.view."
 	});
 
 });
