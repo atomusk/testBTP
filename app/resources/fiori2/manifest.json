@@ -8,14 +8,11 @@
 		"id": "app_abn-fiori2",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
-		"title": "{{appTitle}}",
-		"description": "{{appDescription}}",
 		"applicationVersion": {
-			"version": "1.0.0"
+			"version": "0.0.1"
 		},
-		"ach": "set-ach",
-
-		"resources": "resources.json",
+        "title": "Create a sales order",
+        "description": "",
 		"dataSources": {
             "mainService": {
                 "uri": "catalog/",
@@ -24,7 +21,23 @@
                     "odataVersion": "4.0"
                 }
             }
-		}
+		},
+        "offline": false,
+        "crossNavigation": {
+            "inbounds": {
+                "intent1": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "SalesOrder",
+                    "action": "create",
+                    "title": "Create a sales order",
+                    "subTitle": "",
+                    "icon": "sap-icon://sales-document"
+                }
+            }
+        }
 	},
 
 	"sap.fiori": {
