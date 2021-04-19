@@ -12,11 +12,14 @@ service CatalogService @(path : '/catalog')
             action boost();
         };
 
+    entity SalesItem
+        as select * from db.SalesItem;
+        
+       
     function topSales
         (amount: Integer)
         returns many Sales;
 
-    @readonly
     entity SalesOrders
         as projection on API_SALES_ORDER_SRV.A_SalesOrder {
             SalesOrder,
@@ -25,10 +28,10 @@ service CatalogService @(path : '/catalog')
             SoldToParty,
             IncotermsLocation1,
             TotalNetAmount,
+            SalesOrderType,
             TransactionCurrency
     };
 
-    @readonly
     entity Products 
         as projection on API_PRODUCT_SRV.A_Product {
             Product,

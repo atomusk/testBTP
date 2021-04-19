@@ -4,6 +4,8 @@ GET http://localhost:4004/catalog/$metadata
 ###
 GET http://localhost:4004/catalog/Sales
 ###
+GET http://localhost:4004/catalog/Products
+###
 POST http://localhost:4004/catalog/Sales(1)/CatalogService.boost
 Content-Type: application/json
 
@@ -25,20 +27,41 @@ GET http://localhost:4004/catalog/Sales(9)/CatalogService.largestOrder()
 GET http://localhost:4004/catalog/Viseo_Service
 ###
 
+##
+GET http://localhost:4004/catalog/Viseo_Service/$count
+###
+
 POST http://localhost:4004/catalog/Viseo_Service 
     Content-Type: application/json;charset=UTF-8;IEEE754Compatible=true        
 
-    { "OrderID" : "1", "SAP_Description": "test", "to_Items":[
-        { "Product": "123", "quantity": "5.000"},
-        { "Product": "4" , "quantity": "5.000"}
-    ]}
+    { "SAP_UUID": "cef0cbf3-6458-4f13-a418-ee4d7e7505dd", "OrderID" : "1", "SAP_Description": "test"}
 
 ###
 
 POST http://localhost:4004/catalog/Viseo_Service 
     Content-Type: application/json;charset=UTF-8;IEEE754Compatible=true        
 
-    { "OrderID" : "1", "SAP_Description": "test", "to_Items":[
+    { "SAP_UUID": "cef0cbf3-6458-4f13-a418-ee4d7e7505dd", "OrderID" : "1", "SAP_Description": "test", "to_Items":[
         { "Product": "123", "quantity": "5.000"},
         { "Product": "4" , "quantity": "5.000"}
     ]}
+
+###
+get http://localhost:4004/catalog/Sales?$localhost:4004/catalog/Sales?$expand=items
+
+###
+POST http://localhost:4004/catalog/Sales    
+    Content-Type: application/json;charset=UTF-8;IEEE754Compatible=true        
+
+    { 
+        "ID"       : 18,
+        "region"   : "IDF",
+        "country"  : "France",
+        "org"      : "org1",
+        "amount"   : 5,
+        "comments" : "test" ,
+        "items":[
+        { "product": "123", "quantity": 5},
+        { "product": "4" , "quantity": 5}
+    ]
+    }

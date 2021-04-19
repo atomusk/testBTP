@@ -13,9 +13,9 @@ module.exports = cds.service.impl(async function () {
     const { 
         Sales,
         SalesOrders,
+        Products,
         Viseo_Service,
-        Viseo_Service_item,
-        Products
+        Viseo_Service_item
     } = this.entities;
 
     //Get HANA db sales orders and update comments field with "Exceptional!" for > 500 amount
@@ -77,6 +77,8 @@ module.exports = cds.service.impl(async function () {
         }
     });
 
+
+
     //Get S4Cloud Sales Orders
     this.on('READ', SalesOrders, async (req) => {
         console.log("read sales orders !")
@@ -120,7 +122,7 @@ module.exports = cds.service.impl(async function () {
         }
     });
 
-
+/*
     //Get S4Cloud Service Sales Order
     this.on('READ', SalesOrders, async (req) => {
         console.log("read sales orders !")
@@ -137,7 +139,7 @@ module.exports = cds.service.impl(async function () {
             req.reject(err);
         }
     });
-
+*/
     //Get S4Cloud Service Sales Order
     this.on('READ', Viseo_Service, async (req) => {
         console.log("read Temp sales orders !")
@@ -171,21 +173,51 @@ module.exports = cds.service.impl(async function () {
             req.reject(err);
         }
     });
-    /*
+    
         //Update HANA db with sales boost (add 250 to amount)
-    /*this.on('CREATE',Viseo_Service, async req => {
+    this.on('CREATE',Viseo_Service, async req => {
         try {
-            const ID = req.params[0];
-            const tx = cds.tx(req);
-            await tx.insert(req)
-                .into(Viseo_Service)
-                ;
-            debug('Boosted ID:', ID);
-            return {};
+           const tx = s4hcserv.transaction(req);
+            return await tx.send({
+                query: req.query,
+                headers: {
+                    'Application-Interface-Key': process.env.ApplicationInterfaceKey,
+                    'APIKey': process.env.APIKey
+                }
+            })
         } catch (err) {
             console.error(err);
             return {};
         }
-    });*/
+    });
+
+  //Update HANA db with sales boost (add 250 to amount)
+    this.on('CREATE',SalesOrders, async req => {
+        try {
+           const tx = s4hcserv.transaction(req);
+            /*console.error( await tx.send({
+                query: req.query,     
+                method: 'POST',
+                path :  'SalesOrders',           
+                data : req.data,
+                headers: {
+                    'Application-Interface-Key': process.env.ApplicationInterfaceKey,
+                    'APIKey': process.env.APIKey
+                }
+            }) )*/
+
+            
+           // const tx = cds.tx(req);
+            req.error(await tx.insert(req.data)
+                .into(SalesOrders)
+            );
+                
+            return {};
+
+        } catch (err) {
+            req.error(err  );
+            return {};
+        }
+    });
 
 });
