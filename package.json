@@ -5,7 +5,6 @@
   "dependencies": {
     "@sap/audit-logging": "^3",
     "@sap/cds": "^5",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.6.1",
     "@sap/hana-client": "^2",
     "cf-nodejs-logging-support": "^6",
     "debug": "^4.3",
