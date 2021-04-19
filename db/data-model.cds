@@ -9,7 +9,7 @@ entity Sales {
       comments : String(100);      
       items: Composition of many SalesItem on items.parent = $self;
 };
-
+ 
 entity SalesItem{
     key ID: Integer;
     product: String(40);

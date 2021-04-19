@@ -50,9 +50,13 @@ POST http://localhost:4004/catalog/Viseo_Service
 get http://localhost:4004/catalog/Sales?$localhost:4004/catalog/Sales?$expand=items
 
 ###
+
+get http://localhost:4004/catalog/Sales?$localhost:4004/catalog/Sales/$count
+
+###
 POST http://localhost:4004/catalog/Sales    
     Content-Type: application/json;charset=UTF-8;IEEE754Compatible=true        
-
+ 
     { 
         "ID"       : 18,
         "region"   : "IDF",
