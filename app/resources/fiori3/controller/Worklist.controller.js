@@ -105,7 +105,7 @@ sap.ui.define([
             
             //API Key for API Sandbox
             var oModel = this.getModel("worklistView");
-            var oSelectedSO = this.getSelectedItems();
+            var oSelectedSO = this.getView().byId("table").getSelectedItems();
             oModel.setProperty("/selectedSalesOrder", oSelectedSO);
 
             oSelectedSO.forEach(function(SO){
