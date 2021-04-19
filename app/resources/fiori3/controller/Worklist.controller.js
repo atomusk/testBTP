@@ -281,16 +281,16 @@ sap.ui.define([
             var day = date.getDay();
             var month = date.getMonth();
             
-            if(day.length == 1){
+            if(day < 10){
                 day = "0" + day;
             }
 
-            if(month.length == 1){
+            if(month < 10 ){
                 day = "0" + month;
             }
             
             return year + '-' + month + '-' + day;
         }
-
+        
 	});
 });
