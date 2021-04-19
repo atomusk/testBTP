@@ -61,10 +61,10 @@ POST http://localhost:4004/catalog/Sales
 Content-Type: application/json;charset=UTF-8;IEEE754Compatible=true
 
 {
-    "ID":29604,
+    "ID":29603,
     "region":"FR",
     "country":"France",
-    "org":"",
+    "org":"1740",
     "comments":"",
     "amount": 0,
     "items":[{
