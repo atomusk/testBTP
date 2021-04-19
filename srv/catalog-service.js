@@ -200,24 +200,16 @@ module.exports = cds.service.impl(async function () {
     this.on('CREATE',SalesOrders, async req => {
         try {
            const tx = s4hcserv.transaction(req);
-            /*console.error( await tx.send({
+             return await tx.send({
                 query: req.query,     
                 method: 'POST',
-                path :  'SalesOrders',           
+                       
                 data : req.data,
                 headers: {
                     'Application-Interface-Key': process.env.ApplicationInterfaceKey,
                     'APIKey': process.env.APIKey
                 }
-            }) )*/
-
-            
-           // const tx = cds.tx(req);
-            req.error(await tx.insert(req.data)
-                .into(SalesOrders)
-            );
-                
-            return {};
+            })                          
 
         } catch (err) {
             req.error(err  );
