@@ -19,11 +19,10 @@
   "cds": {
     "requires": {
       "db": {
-        "[production]": {
-          "kind": "hana"
-        },
-        "[development]": {
-          "kind": "sql"
+        "kind": "sqlite",
+        "model": "*",
+        "credentials": {
+          "database": "app_abn.cds"
         }
       },
       "API_PRODUCT_SRV": {

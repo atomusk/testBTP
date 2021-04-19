@@ -19,7 +19,7 @@ modules:
     type: hdb
     path: gen/db
     parameters:
-      buildpack: nodejs_buildpack
+      buildpack: nodejs_buildpack 
       memory: 256M
       disk-quota: 1024M
     requires:
