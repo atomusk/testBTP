@@ -121,7 +121,10 @@ sap.ui.define([
                     comments: "", 
                     amount: 0,
                     items: aItems.map(function(mItem) {
+                        iItem += 10
+
                         return {
+                            ID: iItem,
                             product: mItem.Product,
                             quantity: 1
                         }
