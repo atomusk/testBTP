@@ -9,7 +9,7 @@ sap.ui.define([
 ], function (BaseController, JSONModel, History, formatter, Filter, FilterOperator, Fragment) {
 	"use strict";
 
-	return BaseController.extend("ns.fiori3.controller.Worklist", {
+	return BaseController.extend("app_abn-fiori2.controller.Worklist", {
 
 		formatter: formatter,
 
@@ -136,7 +136,7 @@ sap.ui.define([
 			if (!this._pPopover) {
 				this._pPopover = Fragment.load({
 					id: oView.getId(),
-					name: "ns.fiori3.view.Basket",
+					name: "app_abn-fiori2.view.Basket",
 					controller: this
 				}).then(function(oPopover) {
                     oView.addDependent(oPopover);

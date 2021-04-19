@@ -5,7 +5,7 @@
         "service": "app_abn-service"
     },
 	"sap.app": {
-		"id": "ns.fiori3",
+		"id": "app_abn-fiori2",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"title": "{{appTitle}}",
@@ -52,7 +52,7 @@
 
 	"sap.ui5": {
 		"rootView": {
-			"viewName": "ns.fiori3.view.App",
+			"viewName": "app_abn-fiori2.view.App",
 			"type": "XML",
 			"async": true,
 			"id": "app"
@@ -80,7 +80,7 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "ns.fiori3.i18n.i18n"
+					"bundleName": "app_abn-fiori2.i18n.i18n"
 				}
 			},
 			"": {
@@ -108,7 +108,7 @@
 			"config": {
 				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
-				"viewPath": "ns.fiori3.view",
+				"viewPath": "app_abn-fiori2.view",
 				"controlId": "app",
 				"controlAggregation": "pages",
 				"bypassed": {

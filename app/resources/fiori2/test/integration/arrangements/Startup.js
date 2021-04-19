@@ -6,7 +6,7 @@ sap.ui.define([
 ], function(Opa5, HashChanger, flpSandbox, FakeLrepConnectorLocalStorage) {
 "use strict";
 
-return Opa5.extend("ns.fiori3.test.integration.arrangements.Startup", {
+return Opa5.extend("app_abn-fiori2.test.integration.arrangements.Startup", {
 
 		/**
 		  * Initializes mock server and flp sandbox, then sets the hash intent to simulate pressing on the app tile

@@ -6,7 +6,7 @@ sap.ui.define([
 ], function (BaseController, JSONModel, History, formatter) {
 	"use strict";
 
-	return BaseController.extend("ns.fiori3.controller.Object", {
+	return BaseController.extend("app_abn-fiori2.controller.Object", {
 
 		formatter: formatter,
 
