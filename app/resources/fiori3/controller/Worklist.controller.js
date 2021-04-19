@@ -107,86 +107,86 @@ sap.ui.define([
             var oModel = this.getModel("worklistView");
             var oSelectedSO = this.getView().byId("table").getSelectedItems();
             oModel.setProperty("/selectedSalesOrder", oSelectedSO);
+            var oBinding = this.getModel().bindList("/SalesOrders");
+
+            var oData = [];
+            var oContext;
 
             oSelectedSO.forEach(function(SO){
-            
-            var oBinding = this.getModel().bindList("/SalesOrders");
-            var oData = {
-                "SalesOrderType": "OR",
-                "SalesOrganization": "1710",
-                "DistributionChannel": "10",
-                "OrganizationDivision": "00",
-                "SoldToParty": "17100012",
-                "PurchaseOrderByCustomer": SO.SAP_Description,
-                "SalesOrderDate": new Date(),
-                "TransactionCurrency": "EUR",
-                "SDDocumentReason": "",
-                "PricingDate": new Date(),
-                "PriceDetnExchangeRate": "1.00000",
-                "RequestedDeliveryDate": new Date(),
-                "ShippingCondition": "01",
-                "CompleteDeliveryIsDefined": false,
-                "IncotermsClassification": "CFR",
-                "IncotermsTransferLocation": "Palo Alto",
-                "IncotermsLocation1": "Palo Alto",
-                "CustomerPaymentTerms": "0002",
-                "CustomerAccountAssignmentGroup": "01",
-                "AccountingExchangeRate": "0.00000",
-                "CustomerGroup": "01",
-                "SlsDocIsRlvtForProofOfDeliv": false,
-                "to_Item": [
-                    {
-                        "SalesOrderItem": "10",
-                        "HigherLevelItem": "0",
-                        "SalesOrderItemCategory": "TAN",
-                        "SalesOrderItemText": "Trad.Good 12,Reorder Point,Reg.Trad.",
-                        "PurchaseOrderByCustomer": "test2",
-                        "PurchaseOrderByShipToParty": "",
-                        "Material": "TG12",
-                        "PricingDate": "/Date(1618185600000)/",
-                        "RequestedQuantity": "3",
-                        "RequestedQuantityUnit": "PC",
-                        "RequestedQuantitySAPUnit": "ST",
-                        "RequestedQuantityISOUnit": "PCE",
-                        "ItemWeightSAPUnit": "KG",
-                        "ItemWeightISOUnit": "KGM",
-                        "ItemVolumeSAPUnit": "M3",
-                        "ItemVolumeISOUnit": "MTQ",
-                        "MaterialGroup": "L001",
-                        "ProductionPlant": "1710",
-                        "StorageLocation": "",
-                        "DeliveryGroup": "0",
-                        "ShippingPoint": "1710",
-                        "DeliveryPriority": "2",
-                        "IncotermsClassification": "CFR",
-                        "IncotermsTransferLocation": "Palo Alto",
-                        "IncotermsLocation1": "Palo Alto",
-                        "ProductTaxClassification1": "1",
-                        "MatlAccountAssignmentGroup": "01",
-                        "CustomerPaymentTerms": "0002",
-                        "FixedValueDate": null,
-                        "CustomerGroup": "01",
-                        "SlsDocIsRlvtForProofOfDeliv": false,
-                        "ProfitCenter": "YB700"
-                    }
-                ],
-                "to_Partner": [
-                    {
-                        "PartnerFunction": "SP",
-                        "Customer": "17100012",
-                        "Supplier": "",
-                        "Personnel": "0",
-                        "ContactPerson": "0"
-                    }
-                ]
-            };
+                oData = {
+                    "SalesOrderType": "OR",
+                    "SalesOrganization": "1710",
+                    "DistributionChannel": "10",
+                    "OrganizationDivision": "00",
+                    "SoldToParty": "17100012",
+                    "PurchaseOrderByCustomer": SO.SAP_Description,
+                    "SalesOrderDate": new Date(),
+                    "TransactionCurrency": "EUR",
+                    "SDDocumentReason": "",
+                    "PricingDate": new Date(),
+                    "PriceDetnExchangeRate": "1.00000",
+                    "RequestedDeliveryDate": new Date(),
+                    "ShippingCondition": "01",
+                    "CompleteDeliveryIsDefined": false,
+                    "IncotermsClassification": "CFR",
+                    "IncotermsTransferLocation": "Palo Alto",
+                    "IncotermsLocation1": "Palo Alto",
+                    "CustomerPaymentTerms": "0002",
+                    "CustomerAccountAssignmentGroup": "01",
+                    "AccountingExchangeRate": "0.00000",
+                    "CustomerGroup": "01",
+                    "SlsDocIsRlvtForProofOfDeliv": false,
+                    "to_Item": [
+                        {
+                            "SalesOrderItem": "10",
+                            "HigherLevelItem": "0",
+                            "SalesOrderItemCategory": "TAN",
+                            "SalesOrderItemText": "Trad.Good 12,Reorder Point,Reg.Trad.",
+                            "PurchaseOrderByCustomer": "test2",
+                            "PurchaseOrderByShipToParty": "",
+                            "Material": "TG12",
+                            "PricingDate": "/Date(1618185600000)/",
+                            "RequestedQuantity": "3",
+                            "RequestedQuantityUnit": "PC",
+                            "RequestedQuantitySAPUnit": "ST",
+                            "RequestedQuantityISOUnit": "PCE",
+                            "ItemWeightSAPUnit": "KG",
+                            "ItemWeightISOUnit": "KGM",
+                            "ItemVolumeSAPUnit": "M3",
+                            "ItemVolumeISOUnit": "MTQ",
+                            "MaterialGroup": "L001",
+                            "ProductionPlant": "1710",
+                            "StorageLocation": "",
+                            "DeliveryGroup": "0",
+                            "ShippingPoint": "1710",
+                            "DeliveryPriority": "2",
+                            "IncotermsClassification": "CFR",
+                            "IncotermsTransferLocation": "Palo Alto",
+                            "IncotermsLocation1": "Palo Alto",
+                            "ProductTaxClassification1": "1",
+                            "MatlAccountAssignmentGroup": "01",
+                            "CustomerPaymentTerms": "0002",
+                            "FixedValueDate": null,
+                            "CustomerGroup": "01",
+                            "SlsDocIsRlvtForProofOfDeliv": false,
+                            "ProfitCenter": "YB700"
+                        }
+                    ],
+                    "to_Partner": [
+                        {
+                            "PartnerFunction": "SP",
+                            "Customer": "17100012",
+                            "Supplier": "",
+                            "Personnel": "0",
+                            "ContactPerson": "0"
+                        }
+                    ]
+                };
 
-            var oContext = oBinding.create(oData);    
-            oContext.created().then(function() {
-                console.log("ok !!")
-            }.bind(this));
-
-
+                oContext = oBinding.create(oData);    
+                oContext.created().then(function() {
+                    console.log("ok !!")
+                }.bind(this));
             });
 
         },
