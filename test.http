@@ -97,7 +97,9 @@ POST http://localhost:4004/catalog/Sales
 
 
 ###
+GET   http://localhost:4004/catalog/SalesOrders
 
+###
 POST   http://localhost:4004/catalog/SalesOrders
     Content-Type: application/json;charset=UTF-8;IEEE754Compatible=true        
 

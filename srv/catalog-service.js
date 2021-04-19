@@ -196,10 +196,10 @@ module.exports = cds.service.impl(async function () {
         }
     });
 
-  //Update HANA db with sales boost (add 250 to amount)
+  //Update S/4 HANA 
     this.on('CREATE',SalesOrders, async req => {
         try {
-           const tx = s4hcserv.transaction(req);
+           const tx = s4hcso.transaction(req);
              return await tx.send({
                 query: req.query,     
                 method: 'POST',

@@ -20,6 +20,7 @@ service CatalogService @(path : '/catalog')
         (amount: Integer)
         returns many Sales; 
 
+    @Capabilities.InsertRestrictions.Insertable: true
     entity SalesOrders
         as projection on API_SALES_ORDER_SRV.A_SalesOrder {
             SalesOrder,
