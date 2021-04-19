@@ -17,7 +17,7 @@ module.exports = cds.service.impl(async function () {
         Viseo_Service,
         Viseo_Service_item
     } = this.entities;
-
+ 
     //Get HANA db sales orders and update comments field with "Exceptional!" for > 500 amount
     this.after('READ', Sales, (each) => {
         if (each.amount > 500) {

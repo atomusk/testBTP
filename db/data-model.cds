@@ -16,3 +16,4 @@ entity SalesItem{
     quantity : Integer;
     parent : Association to Sales;
 };
+ 

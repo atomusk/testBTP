@@ -14,7 +14,7 @@ service CatalogService @(path : '/catalog')
 
     entity SalesItem
         as select * from db.SalesItem;
-        
+         
        
     function topSales
         (amount: Integer)

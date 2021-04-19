@@ -53,7 +53,7 @@ get http://localhost:4004/catalog/Sales?$localhost:4004/catalog/Sales?$expand=it
 
 get http://localhost:4004/catalog/Sales?$localhost:4004/catalog/Sales/$count
 
-###
+### 
 POST http://localhost:4004/catalog/Sales    
     Content-Type: application/json;charset=UTF-8;IEEE754Compatible=true        
  
@@ -68,4 +68,4 @@ POST http://localhost:4004/catalog/Sales
         { "product": "123", "quantity": 5},
         { "product": "4" , "quantity": 5}
     ]
-    }
+    } 
