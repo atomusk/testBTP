@@ -5,8 +5,9 @@ sap.ui.define([
 	"../model/formatter",
 	"sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
-    "sap/ui/core/Fragment"
-], function (BaseController, JSONModel, History, formatter, Filter, FilterOperator, Fragment) {
+    "sap/ui/core/Fragment",
+    "sap/m/MessageToast"
+], function (BaseController, JSONModel, History, formatter, Filter, FilterOperator, Fragment, Toast) {
 	"use strict";
 
 	return BaseController.extend("app_abn-fiori2.controller.Worklist", {
@@ -106,6 +107,7 @@ sap.ui.define([
             
             var oBasketModel = this.getModel("basket")     
             var aItems = oBasketModel.getProperty("/items")
+            var sComment = oBasketModel.getProperty("/comment")
             console.log(oBasketModel.getData())
 
             if (aItems.length > 0) {
@@ -120,7 +122,7 @@ sap.ui.define([
                     region: "FR",
                     country: "France",
                     org: "1710",
-                    comments: "", 
+                    comments: sComment, 
                     amount: 0,
                     items: aItems.map(function(mItem) {
                         iItem += 1
@@ -134,7 +136,14 @@ sap.ui.define([
                 })    
                 
                 oContext.created().then(function() {
-                    console.log("ok !!")
+                    Toast.show("Sales Order created !")
+
+
+                    oBasketModel.setProperty("/items", [])
+                    oBasketModel.setProperty("/comment", "")
+                    oBasketModel.setProperty("/badgeCount", 0)
+                    oBasketModel.setProperty("/badgeVisible", false)
+                    
                 }.bind(this))
             }
         },

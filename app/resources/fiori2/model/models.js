@@ -9,6 +9,7 @@ sap.ui.define([
 
         createBasketModel: function() {
 			var oModel = new JSONModel({
+                comment: "",
                 badgeVisible: false,
                 badgeCount: 0,
                 items: []

@@ -14,6 +14,9 @@
 					press=".onCreateSOPress" />
 			</OverflowToolbar>
 		</footer>
+        <VBox class="sapUiSmallMargin">
+        <Label text="Comment :"></Label>
+        <TextArea value="{basket>/comment}" width="200px"></TextArea>
         <Table
             items="{basket>/items}"
             width="200px"
@@ -35,6 +38,7 @@
                 </ColumnListItem>
             </items>
         </Table>
+        </VBox>
 		<!--<Image src="{ProductPicUrl}" width="15em" densityAware="false" />-->
 	</Popover>
 </core:FragmentDefinition>
