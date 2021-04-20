@@ -34,7 +34,8 @@ sap.ui.define([
 				shareOnJamTitle: this.getResourceBundle().getText("worklistTitle"),
 				shareSendEmailSubject: this.getResourceBundle().getText("shareSendEmailWorklistSubject"),
 				shareSendEmailMessage: this.getResourceBundle().getText("shareSendEmailWorklistMessage", [location.href]),
-				tableNoDataText : this.getResourceBundle().getText("tableNoDataText")
+                tableNoDataText : this.getResourceBundle().getText("tableNoDataText"),
+                selectedSalesOrder: []
 			});
 			this.setModel(oViewModel, "worklistView");
 
@@ -98,102 +99,96 @@ sap.ui.define([
             
 		},
 
-        onApprovePress: function() {
+        onApprovePress: function(oEvent) {
 //            var oButton = oEvent.getSource();
 //            var oView = this.getView();
             
             //API Key for API Sandbox
-            var oModel = this.getModel();
+            var oModel = this.getModel("worklistView");
+            var oSelectedSO = this.getView().byId("table").getSelectedItems();
+            oModel.setProperty("/selectedSalesOrder", oSelectedSO);
             var oBinding = this.getModel().bindList("/SalesOrders");
 
-            //adding request headers
-            oModel.setHeaders( {
-                "Content-Type":"application/json",
-                "Accept":"application/json",
-                "APIKey":"keYFzrr0TrC7FxFptgehXJYQyKNzpRUG"
+            var oData = [];
+            var oContext;            
+            var current_date = this._formatDate(new Date());
+
+            oSelectedSO.forEach(function(SO){
+                oData = {
+                    "SalesOrderType": "OR",
+                    "SalesOrganization": "1710",
+                    "DistributionChannel": "10",
+                    "OrganizationDivision": "00",
+                    "SoldToParty": "17100012",
+                    "PurchaseOrderByCustomer": SO.SAP_Description,
+                    "SalesOrderDate": current_date,
+                    "TransactionCurrency": "EUR",
+                    "SDDocumentReason": "",
+                    "PricingDate": current_date,
+                    "PriceDetnExchangeRate": "1.00000",
+                    "RequestedDeliveryDate": current_date,
+                    "ShippingCondition": "01",
+                    "CompleteDeliveryIsDefined": false,
+                    "IncotermsClassification": "CFR",
+                    "IncotermsTransferLocation": "Palo Alto",
+                    "IncotermsLocation1": "Palo Alto",
+                    "CustomerPaymentTerms": "0002",
+                    "CustomerAccountAssignmentGroup": "01",
+                    "AccountingExchangeRate": "0.00000",
+                    "CustomerGroup": "01",
+                    "SlsDocIsRlvtForProofOfDeliv": false,
+                    "to_Item": [
+                        {
+                            "SalesOrderItem": "10",
+                            "HigherLevelItem": "0",
+                            "SalesOrderItemCategory": "TAN",
+                            "SalesOrderItemText": "Trad.Good 12,Reorder Point,Reg.Trad.",
+                            "PurchaseOrderByCustomer": "test2",
+                            "PurchaseOrderByShipToParty": "",
+                            "Material": "TG12",
+                            "PricingDate": current_date,
+                            "RequestedQuantity": "3",
+                            "RequestedQuantityUnit": "PC",
+                            "RequestedQuantitySAPUnit": "ST",
+                            "RequestedQuantityISOUnit": "PCE",
+                            "ItemWeightSAPUnit": "KG",
+                            "ItemWeightISOUnit": "KGM",
+                            "ItemVolumeSAPUnit": "M3",
+                            "ItemVolumeISOUnit": "MTQ",
+                            "MaterialGroup": "L001",
+                            "ProductionPlant": "1710",
+                            "StorageLocation": "",
+                            "DeliveryGroup": "0",
+                            "ShippingPoint": "1710",
+                            "DeliveryPriority": "2",
+                            "IncotermsClassification": "CFR",
+                            "IncotermsTransferLocation": "Palo Alto",
+                            "IncotermsLocation1": "Palo Alto",
+                            "ProductTaxClassification1": "1",
+                            "MatlAccountAssignmentGroup": "01",
+                            "CustomerPaymentTerms": "0002",
+                            "FixedValueDate": null,
+                            "CustomerGroup": "01",
+                            "SlsDocIsRlvtForProofOfDeliv": false,
+                            "ProfitCenter": "YB700"
+                        }
+                    ],
+                    "to_Partner": [
+                        {
+                            "PartnerFunction": "SP",
+                            "Customer": "17100012",
+                            "Supplier": "",
+                            "Personnel": "0",
+                            "ContactPerson": "0"
+                        }
+                    ]
+                };
+
+                oContext = oBinding.create(oData);    
+                oContext.created().then(function() {
+                    console.log("ok !!")
+                }.bind(this));
             });
-
-            //Available Security Schemes for productive API Endpoints
-            //Basic Authentication
-
-            //Basic Auth : provide username:password in Base64 encoded in Authorization header
-
-            //sending request
-            //API endpoint for API sandbox 
-            var oData = {
-                "SalesOrderType": "OR",
-                "SalesOrganization": "1710",
-                "DistributionChannel": "10",
-                "OrganizationDivision": "00",
-                "SoldToParty": "17100012",
-                "PurchaseOrderByCustomer": "test2",
-                "SalesOrderDate": "/Date(1618185600000)/",
-                "TransactionCurrency": "USD",
-                "SDDocumentReason": "",
-                "PricingDate": "/Date(1618185600000)/",
-                "PriceDetnExchangeRate": "1.00000",
-                "RequestedDeliveryDate": "/Date(1618531200000)/",
-                "ShippingCondition": "01",
-                "CompleteDeliveryIsDefined": false,
-                "IncotermsClassification": "CFR",
-                "IncotermsTransferLocation": "Palo Alto",
-                "IncotermsLocation1": "Palo Alto",
-                "CustomerPaymentTerms": "0002",
-                "CustomerAccountAssignmentGroup": "01",
-                "AccountingExchangeRate": "0.00000",
-                "CustomerGroup": "01",
-                "SlsDocIsRlvtForProofOfDeliv": false,
-                "to_Item": [
-                    {
-                        "SalesOrderItem": "10",
-                        "HigherLevelItem": "0",
-                        "SalesOrderItemCategory": "TAN",
-                        "SalesOrderItemText": "Trad.Good 12,Reorder Point,Reg.Trad.",
-                        "PurchaseOrderByCustomer": "test2",
-                        "PurchaseOrderByShipToParty": "",
-                        "Material": "TG12",
-                        "PricingDate": "/Date(1618185600000)/",
-                        "RequestedQuantity": "3",
-                        "RequestedQuantityUnit": "PC",
-                        "RequestedQuantitySAPUnit": "ST",
-                        "RequestedQuantityISOUnit": "PCE",
-                        "ItemWeightSAPUnit": "KG",
-                        "ItemWeightISOUnit": "KGM",
-                        "ItemVolumeSAPUnit": "M3",
-                        "ItemVolumeISOUnit": "MTQ",
-                        "MaterialGroup": "L001",
-                        "ProductionPlant": "1710",
-                        "StorageLocation": "",
-                        "DeliveryGroup": "0",
-                        "ShippingPoint": "1710",
-                        "DeliveryPriority": "2",
-                        "IncotermsClassification": "CFR",
-                        "IncotermsTransferLocation": "Palo Alto",
-                        "IncotermsLocation1": "Palo Alto",
-                        "ProductTaxClassification1": "1",
-                        "MatlAccountAssignmentGroup": "01",
-                        "CustomerPaymentTerms": "0002",
-                        "FixedValueDate": null,
-                        "CustomerGroup": "01",
-                        "SlsDocIsRlvtForProofOfDeliv": false,
-                        "ProfitCenter": "YB700"
-                    }
-                ],
-                "to_Partner": [
-                    {
-                        "PartnerFunction": "SP",
-                        "Customer": "17100012",
-                        "Supplier": "",
-                        "Personnel": "0",
-                        "ContactPerson": "0"
-                    }
-                ]
-            };
-
-            var oContext = oBinding.create(oData);    
-            oContext.created().then(function() {
-                console.log("ok !!")
-            }.bind(this));
 
         },
 
@@ -278,7 +273,24 @@ sap.ui.define([
 			if (aTableSearchState.length !== 0) {
 				oViewModel.setProperty("/tableNoDataText", this.getResourceBundle().getText("worklistNoDataWithSearchText"));
 			}
-		}
+        },
+        
+
+        _formatDate: function(date) {            
+            var year = date.getFullYear();
+            var day = date.getDay();
+            var month = date.getMonth();
+            
+            if(day < 10){
+                day = "0" + day;
+            }
+
+            if(month < 10 ){
+                month= "0" + month;
+            }
+            
+            return year + '-' + month + '-' + day;
+        }
 
 	});
 });

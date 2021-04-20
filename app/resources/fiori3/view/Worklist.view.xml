@@ -72,7 +72,6 @@
 
 				<items>
 					<ColumnListItem
-						press=".onPress"
                         type="Active">
 						<cells>
 							<ObjectIdentifier
