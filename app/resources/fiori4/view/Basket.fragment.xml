@@ -1,0 +1,40 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover
+		id="basketPopover"
+		title="Basket"
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+		placement="Bottom">
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+					text="Create Sales Order"
+					press="createSO" />
+			</OverflowToolbar>
+		</footer>
+        <Table
+            items="{basket>/items}"
+            width="200px"
+            noDataText="Please add products to the basket">
+
+    
+            <columns>
+                <Column>
+                    <Text text="{i18n>tableNameColumnTitle}"/>
+                </Column>
+            </columns>
+            
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <ObjectIdentifier
+                            title="{basket>Product}"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+		<!--<Image src="{ProductPicUrl}" width="15em" densityAware="false" />-->
+	</Popover>
+</core:FragmentDefinition>
