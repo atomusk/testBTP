@@ -111,20 +111,22 @@ sap.ui.define([
             if (aItems.length > 0) {
                     
                 var oBinding = this.getModel().bindList("/Sales");
+                var iSalesOrdsId = this.getRandomInt(99999)
+                var iOrderId = this.getRandomInt(99999)
                 var iItem = 0;
                 
                 var oContext = oBinding.create({
-                    ID: this.getRandomInt(99999),
+                    ID: iOrderId,
                     region: "FR",
                     country: "France",
                     org: "1710",
                     comments: "", 
                     amount: 0,
                     items: aItems.map(function(mItem) {
-                        iItem += 10
+                        iItem += 1
 
                         return {
-                            ID: iItem,
+                            ID: iOrderId + iItem,
                             product: mItem.Product,
                             quantity: 1
                         }
